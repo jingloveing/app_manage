@@ -1,0 +1,30 @@
+.header{
+    background-color: #0f8edd;
+}
+.login-wrap{
+    background: #f2f7f8;
+}
+.plugins-tips{
+    background: #0f8edd;
+}
+.plugins-tips a{
+    color: #0f8edd;
+}
+.el-upload--text em {
+    color: #0f8edd;
+}
+.pure-button{
+    background: #0f8edd;
+}
+.vue-datasource .btn-primary {
+    color: #fff;
+    background-color: #0f8edd !important;
+    border-color: #0f8edd !important;
+}
+.pagination > .active > a, .pagination > .active > a:hover, .pagination > .active > a:focus, .pagination > .active > span, .pagination > .active > span:hover, .pagination > .active > span:focus {
+    background-color: #0f8edd !important;
+    border-color: #0f8edd !important;
+}
+.el-breadcrumb__item__inner{
+    color: #0f8edd!important;
+}
