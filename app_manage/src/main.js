@@ -12,6 +12,7 @@ new Vue({
     render: h => h(App)
 }).$mount('#app');
 
+
 /******************拦截器设置请参考这部分(开始)******************/
 axios.interceptors.request.use(
 config => {

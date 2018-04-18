@@ -6,27 +6,27 @@
             </el-breadcrumb>
         </div>
         <div class="ms-doc">
-            <div class="ms-doc_main" v-show="messageList.data.length!==0">
+            <div class="ms-doc_main" v-show="messageList.length!==0">
                 <el-collapse accordion>
-                    <div v-for="list in messageList.data" @click="change(list.id)">
+                    <div v-for="list in messageList" @click="change(list.id,list.is_read)">
                         <el-collapse-item>
                             <template slot="title">
-                                {{list.title}} <span class="date">{{list.add_time}} <i class="round" v-show="list.status==1?'1':''"></i></span>
+                                {{list.title}} <span class="date">{{list.create_time}} <i class="round" v-show="list.is_read==0?'1':''"></i></span>
                             </template>
-                            <p>{{list.msg}}</p>
+                            <p>{{list.content}}</p>
                         </el-collapse-item>
                     </div>
                 </el-collapse>
                 <div class="block">
                     <el-pagination
                         @current-change="handleCurrentChange"
-                        :page-size=per_page
+                        :page-size=limit
                         layout="prev, pager, next, jumper"
-                        :total=messageList.total>
+                        :total=totalPage>
                     </el-pagination>
                 </div>
             </div>
-            <p v-show="messageList.data.length==0" class="empty">暂无任何通知</p>
+            <p v-show="messageList.length==0" class="empty">暂无任何通知</p>
             
             
         </div>
@@ -41,43 +41,42 @@
                 title:'',
                 content:'',
                 page:1,
-                per_page:15,
-                messageList:{
-                    data:[]
-                }
+                limit:20,
+                messageList:[],
+                totalPage:0,
             }
         },
         methods: {
             //      获取通知中心消息列表
             getMessageList: function (val) {
                 this.page=val
-                this.$ajax.get('/api/Message/messageList',{params:{page:this.page,per_page:this.per_page}}).then((res) => {
+                this.$ajax.get('/api/adminMessageList',{params:{page:this.page,limit:this.limit}}).then((res) => {
                     if (res.data.code == '200') {
-                        this.messageList = res.data.data.message_list
+                        this.messageList = res.data.data.list
+                        this.totalPage=res.data.data.total_page
                     }
                 }, (err) => {
                     console.log(err)
                 })
             },
-//            toShow(){
-//                this.isShow=true
-//            },
-//            handleSizeChange(val) {
-//                console.log(`每页 ${val} 条`);
-//            },
             handleCurrentChange(val) {
 //                获取当前页数的消息
                 this.getMessageList(val)
             },
-            change(e){
-//                更改已读消息的状态
-                this.$ajax.post('/api/Message/setStatus',{message_id:e}).then((res) => {
+            change(e,status){
+            	if(status==0){
+            		//                更改已读消息的状态
+                this.$ajax.post('/api/setMessageRead',{id:e}).then((res) => {
                     if (res.data.code == '200') {
                         this.getMessageList()
                     }
                 }, (err) => {
                     console.log(err)
                 })
+            	}else{
+            		
+            	}
+
             }
         },
         mounted() {
@@ -101,6 +100,7 @@
     .ms-doc_main {
         padding: 20px;
         border-top: 1px solid #e9f1f3;
+        overflow: hidden;
     }
 
     .lead_out img {

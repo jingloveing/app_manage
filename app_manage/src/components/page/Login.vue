@@ -69,6 +69,7 @@
                 }).then((res) => {
                     if (res.data.code == '200') {
                     	sessionStorage.setItem("token",res.data.data.token)
+                    	sessionStorage.setItem("username",res.data.data.username)
 //                      localStorage.setItem('ms_username',self.ruleForm.username);
 //                      localStorage.setItem('ms_password',self.ruleForm.password);
 //                      localStorage.setItem('ms_nickname',res.data.data.user_info.nickname);

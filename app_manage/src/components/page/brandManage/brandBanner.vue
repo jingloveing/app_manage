@@ -55,7 +55,7 @@
 			getBannerList: function() {
 				this.$ajax.get('/api/indexBannerList', {
 					params:{
-					type:"1",
+					type:"2",
 				}
 				}).then((res) => {
 					if(res.data.code == '200') {
@@ -121,7 +121,7 @@
 				this.bannerList.push({
 					image: '',
 					click_url: '',
-					type:1,
+					type:2,
 				})
 			},
 			del1(index) {

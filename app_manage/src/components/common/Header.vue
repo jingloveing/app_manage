@@ -2,12 +2,12 @@
     <div class="header">
         <div class="logo"><img src="/static/img/logo.png" alt=""></div>
          <div class="nav">
-             <span v-on:click="toNotice()"><img src="/static/img/info_img.png" alt="">消息（{{num}}）</span>
+             <span v-on:click="toNotice()"><img src="/static/img/info_img.png" alt="">消息（{{unMessage}}）</span>
          </div>
         <div class="user-info">
             <el-dropdown trigger="click" @command="handleCommand">
                 <span class="el-dropdown-link">
-                    {{nickname}}
+                    {{username}}
                     <i class="el-icon-arrow-down" style="margin-left: 10px;"></i>
                 </span>
                 <el-dropdown-menu slot="dropdown">
@@ -23,52 +23,38 @@
         data() {
             return {
                 isShow:true,
-                nickname:'',
+                username:'',
                 defaultImg:'this.src="'+require('../../../static/img/default_img.png')+'"',
-                num:'0',
+                unMessage:0,
             }
         },
         computed:{
-            username(){
-                let username = localStorage.getItem('ms_username');
-                return username ? username : this.name;
-            }
+            
         },
         methods:{
-            //      获取最新未读消息
+            //      获取最新未读消息个数
             getMessage: function () {
-                this.$ajax.post('/api/Menu/unreadMessage').then((res) => {
+                this.$ajax.get('/api/unReadCount').then((res) => {
                     if (res.data.code == '200') {
-                        this.message=res.data.data
+                        this.unMessage=res.data.data.unMessage
                     }else{
-                        this.num=null
+                        this.unMessage=0
                     }
                 }, (err) => {
                     console.log(err)
                 })
             },
             handleCommand(command) {
-                    this.$ajax.post('/api/User/logout').then((res)=>{
-                        if(res.data.code=='200'){
-                            localStorage.clear()
-                            this.$router.push('/login');
-                        }else{
-                            this.$message({
-                                message: res.data.error,
-                                type: 'error'
-                            });
-                        }
-                    },(err)=>{
-
-                    })
+            	sessionStorage.clear()
+               this.$router.push('/login');
+                    
             },
             toNotice(){
                     this.$router.push({ path: "/notice" })
             },
         },
         created:function(){
-            this.userPhoto = localStorage.getItem('ms_userPhoto');
-            this.nickname = localStorage.getItem('ms_nickname');
+            this.username = sessionStorage.getItem('username');
             this.getMessage()
             setInterval(()=>{
                 this.getMessage()

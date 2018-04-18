@@ -52,6 +52,23 @@
                           title: '挂单审核'
                       },
                       {
+                      	index: '7',
+                          title: '数据中心',
+                          subs: [
+                              {
+                                  index: 'userData',
+                                  title: '用户数据'
+                              },{
+                                  index: 'appVisit',
+                                  title: 'APP访问量'
+                              },{
+                                  index: 'selfVisit',
+                                  title: '自营商城访问量'
+                              },
+
+                          ]
+                      },
+                      {
                       	index: '2',
                           title: '首页控制区',
                           subs: [

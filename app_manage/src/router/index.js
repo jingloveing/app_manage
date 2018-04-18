@@ -61,6 +61,15 @@ export default new Router({
                 },{
                     path: '/notice',
                     component: resolve => require(['../components/page/notice.vue'], resolve)
+                },{
+                    path: '/userData',
+                    component: resolve => require(['../components/page/data_analysis/userData.vue'], resolve)
+                },{
+                    path: '/appVisit',
+                    component: resolve => require(['../components/page/data_analysis/appVisit.vue'], resolve)
+                },{
+                    path: '/selfVisit',
+                    component: resolve => require(['../components/page/data_analysis/selfVisit.vue'], resolve)
                 },
                 
             ]

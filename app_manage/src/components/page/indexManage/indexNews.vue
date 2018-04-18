@@ -33,7 +33,7 @@
 		<!--新增数据弹出框-->
 		<el-dialog title="新增数据" :visible.sync="dialogVisible" :before-close="handleClose" class="addnews-dialog">
 			<div>
-				<el-form ref="form" :model="form" label-width="100px">
+				<el-form ref="form" label-width="100px">
 					<el-form-item label="用户昵称：" class="dialog">
 						<el-input v-model="nickname"></el-input>
 					</el-form-item>
