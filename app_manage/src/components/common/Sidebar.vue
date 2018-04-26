@@ -61,10 +61,11 @@
                               },{
                                   index: 'appVisit',
                                   title: 'APP访问量'
-                              },{
-                                  index: 'selfVisit',
-                                  title: '自营商城访问量'
                               },
+//                            {
+//                                index: 'selfVisit',
+//                                title: '自营商城访问量'
+//                            },
 
                           ]
                       },
@@ -89,9 +90,13 @@
                           index: '3',
                           title: '一键分享控制区',
                           subs: [
+                           {
+                                  index: 'shareBanner',
+                                  title: '海报图'
+                             },
                               {
                                   index: 'editShare',
-                                  title: '编辑优选商品'
+                                  title: '话题圈'
                               }
 
                           ]

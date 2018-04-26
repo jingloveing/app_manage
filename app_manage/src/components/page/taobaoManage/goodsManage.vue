@@ -106,7 +106,7 @@
 					</el-table-column>
 					<el-table-column label="商品状态" width="100">
 					  <template slot-scope="scope" >
-					  	<span v-text="scope.row.is_sale==0?'未上架':'已上 架'"></span>
+					  <span v-text="scope.row.is_sale==0?'未上架':'已上架'"></span>
 					  </template>
 					</el-table-column>
 					<el-table-column prop="coupon_number" label="操作" width="100">

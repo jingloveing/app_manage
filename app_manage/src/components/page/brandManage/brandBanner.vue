@@ -177,9 +177,10 @@
 	.upload_img,.upload_img2 {
 		width: 250px;
 		height: 86px;
-		background-image: url("/static/img/upload_img_bd.png");
-		background-size: 100% 100%;
-		background-repeat: no-repeat;
+		background: #f2f7f8;
+		/*background-image: url("/static/img/upload_img_bd.png");*/
+		/*background-size: 100% 100%;
+		background-repeat: no-repeat;*/
 		display: inline-block;
 		margin: 0px 10px 20px 88px;
 	}

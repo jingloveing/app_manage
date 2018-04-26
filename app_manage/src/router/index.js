@@ -39,6 +39,10 @@ export default new Router({
                     component: resolve => require(['../components/page/share/editShare.vue'], resolve)
                 },
                 {
+                    path: '/shareBanner',
+                    component: resolve => require(['../components/page/share/shareBanner.vue'], resolve)
+                },
+                {
                     path: '/goodsManage',
                     component: resolve => require(['../components/page/taobaoManage/goodsManage.vue'], resolve)
                 },{

@@ -19,6 +19,8 @@
 					</el-button>
 					<el-button type="primary" @click="add()" style="margin-left: 30px!important;">添加品牌
 					</el-button>
+					<el-button type="primary" @click="same()" style="margin-left: 30px!important;">同步商品
+					</el-button>
 				</el-form>
 				<p style="font-size: 14px; color: #54667a;margin-top: 16px;">品牌店铺共<span style="color: #FC4B6C;">{{total_count}}</span>件</p>
 				<div style="padding: 12px 20px;border: 1px solid rgb(223, 236, 235);margin-top: 12px;border-bottom: 0;">
@@ -451,6 +453,27 @@
 					
 				},(err)=>{
 					
+				})
+			},
+			//同步商品
+			same(){
+				this.$ajax.post("/api/insertMerchantPro").then((res)=>{
+					if(res.data.code == '200') {
+						this.$message({
+							message: res.data.data.message,
+							type: 'success'
+						});
+						this.getGoodsList()
+					} else if(res.data.code == "601") {
+						this.$router.push('/login')
+					} else {
+						this.$message({
+							message: res.data.error,
+							type: 'error'
+						});
+					}
+				},(err)=>{
+					console.log(err)
 				})
 			}
 		},
