@@ -33,7 +33,7 @@
 									<img :src="item.pict_url" alt="" />
 								</li>
 							</ul>
-							<span style="color: #0f8edd;position: absolute;left: 360px;bottom: 0px;" class="f14" @click="select()">从库中选择</span>
+							<span style="color: #0f8edd;cursor: pointer;" class="f14" @click="select()">从库中选择</span>
 						</el-form-item>
 						<el-form-item>
 							<el-button type="primary" @click="submitForm('formData')">立即创建</el-button>
@@ -77,7 +77,7 @@
 		</div>
 		<!--新增商品弹出框-->
 		<el-dialog title="优选商品库" :visible.sync="dialogVisible" class="special-dialog">
-			<p>(请从库中挑满8件商品，{{selectPro.length}}/8)</p>
+				<p style="display: inline-block;">(请从库中挑满8件商品，{{selectPro.length}}/8)</p>
 			<div>
 				<el-table ref="table" :data="proList" tooltip-effect="dark" style="width: 100%;text-align: center;" border>
 					<el-table-column label="店铺" height="95" width="80">
@@ -93,7 +93,10 @@
 					<el-table-column label="券额" width="100">
 						<template slot-scope="scope">￥{{scope.row.coupon_number}}</template>
 					</el-table-column>
-					<el-table-column label="操作" width="120">
+					<el-table-column label="佣金" width="100">
+						<template slot-scope="scope">￥{{scope.row.commission}}</template>
+					</el-table-column>
+					<el-table-column label="操作" width="80">
 						<template slot-scope="scope">
 							<el-button @click="add(scope.row)" type="text" size="small" class="pros" v-show="!scope.row.is_selected">选择
 							</el-button>
@@ -453,7 +456,7 @@
 <style scoped>
 	ul {
 		list-style: none;
-		width: 344px;
+		width: 530px;
 		display: flex;
 		flex-wrap: wrap;
 		align-items: center;
@@ -465,8 +468,8 @@
 	}
 	
 	ul>li>img {
-		width: 80px;
-		height: 80px;
+		width: 100px;
+		height: 100px;
 	}
 	
 	.sort {
@@ -513,21 +516,25 @@
 	}
 	
 	.app-list-main {
-		width: 344px;
+		width: 530px;
 		display: flex;
 		flex-wrap: wrap;
 		align-items: center;
 		line-height: 0;
+		cursor: pointer;
 	}
 	
 	.app-list {
 		margin: 0 6px 6px 0;
 		position: relative;
+		width: 100px;
+		height: 100px;
+		overflow: hidden;
 	}
 	
 	.app-list img {
-		width: 80px;
-		height: 80px;
+		width: 100px;
+		margin: -44px 0;
 	}
 	
 	.check {

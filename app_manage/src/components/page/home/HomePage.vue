@@ -173,7 +173,7 @@
     padding-top: 0;
 }
     .list{
-    	width: 342px;
+    	width: 310px;
     	height: 152px;
     	box-sizing: border-box;
     	padding: 30px;

@@ -23,8 +23,8 @@
 								<!--<template slot="prepend">http://</template>-->
 							</el-input>
 							<el-button type="primary" round style="background-color: #0f8edd;border-color: #0f8edd;" @click="saveBanner(index)">保存
-						</el-button>
-						<el-button type="danger" @click="del1(index)">删除组</el-button>
+							</el-button>
+							<el-button type="danger" @click="del1(index)">删除组</el-button>
 						</div>
 						<el-button type="primary" round style="background-color: #0f8edd;border-color: #0f8edd;margin-left: 84px;" @click="add1()">增加组
 						</el-button>
@@ -42,10 +42,10 @@
 								<label :for="'banner'+index" class="upload_btn">上传图片
 								</label>
 								<span style="font-size: 14px;color: #999999;position: absolute;bottom: 20px;">(格式JPG、JPEG、PNG，文件大小100k以内，建议尺寸750PX*180PX)</span>
-								
+
 							</div>
 							<el-button type="primary" round style="background-color: #0f8edd;border-color: #0f8edd;margin-left: 90px;" @click="saveBanner(5)">保存
-						</el-button>
+							</el-button>
 						</div>
 						<div style="margin-bottom: 20px;">
 							<div style="position: relative;">
@@ -57,10 +57,10 @@
 								<label :for="'banner'+index" class="upload_btn">上传图片
 								</label>
 								<span style="font-size: 14px;color: #999999;position: absolute;bottom: 20px;">(格式JPG、JPEG、PNG，文件大小100k以内，建议尺寸750PX*180PX)</span>
-								
+
 							</div>
 							<el-button type="primary" round style="background-color: #0f8edd;border-color: #0f8edd;margin-left: 90px;" @click="saveBanner(6)">保存
-						</el-button>
+							</el-button>
 						</div>
 						<div style="margin-bottom: 20px;">
 							<div style="position: relative;">
@@ -72,12 +72,13 @@
 								<label :for="'banner'+index" class="upload_btn">上传图片
 								</label>
 								<span style="font-size: 14px;color: #999999;position: absolute;bottom: 20px;">(格式JPG、JPEG、PNG，文件大小100k以内，建议尺寸750PX*180PX)</span>
-								
+
 							</div>
 							<el-button type="primary" round style="background-color: #0f8edd;border-color: #0f8edd;margin-left: 90px;" @click="saveBanner(7)">保存
-						</el-button>
+							</el-button>
 						</div>
-					</div></el-tab-pane>
+					</div>
+				</el-tab-pane>
 			</el-tabs>
 
 		</div>
@@ -93,41 +94,41 @@
 					click_url: '',
 				}],
 				index: '',
-				status:"4",
-				nine:{
-					image:'',
-					click_url:''
+				status: "4",
+				nine: {
+					image: '',
+					click_url: ''
 				},
-				big:{
-					image:'',
-					click_url:''
+				big: {
+					image: '',
+					click_url: ''
 				},
-				ju:{
-					image:'',
-					click_url:''
+				ju: {
+					image: '',
+					click_url: ''
 				}
 			}
 		},
 		methods: {
 			//      获取banner列表   淘宝首页：4,淘宝专场海报图：5
 			getBannerList: function() {
-				this.$ajax.get('/api/indexBannerList',{
-					params:{
-						type:this.status
+				this.$ajax.get('/api/indexBannerList', {
+					params: {
+						type: this.status
 					}
 				}).then((res) => {
 					if(res.data.code == '200') {
-						if(this.status=="4"){
+						if(this.status == "4") {
 							this.bannerList = res.data.data
-						}else{
-							this.nine=res.data.data.nine
-							this.big=res.data.data.big
-							this.ju=res.data.data.ju
+						} else {
+							this.nine = res.data.data.nine
+							this.big = res.data.data.big
+							this.ju = res.data.data.ju
 						}
-						
-					}else if(res.data.code=="601"){
-				        this.$router.push('/login')
-					}else{
+
+					} else if(res.data.code == "601") {
+						this.$router.push('/login')
+					} else {
 						this.$message({
 							message: res.data.error,
 							type: 'error'
@@ -139,36 +140,36 @@
 			},
 			//      保存banner
 			saveBanner: function(index) {
-				var data={}
-				if(this.status==4){
-				   data=this.bannerList[index]
-				}else{
-					if(index==5){
-						data=this.nine
-					}else if(index==6){
-						data=this.big
-					}else{
-						data=this.ju
+				var data = {}
+				if(this.status == 4) {
+					data = this.bannerList[index]
+				} else {
+					if(index == 5) {
+						data = this.nine
+					} else if(index == 6) {
+						data = this.big
+					} else {
+						data = this.ju
 					}
 				}
-				this.$ajax.post('/api/saveIndexBanner',data).then(
+				this.$ajax.post('/api/saveIndexBanner', data).then(
 					(res) => {
-					if(res.data.code == '200') {
-						this.$message({
-							message: res.data.data.message,
-							type: 'success'
-						});
-					} else if(res.data.code=="601"){
-				        this.$router.push('/login')
-					}else{
-						this.$message({
-							message: res.data.error,
-							type: 'error'
-						});
-					}
-				}, (err) => {
-					console.log(err)
-				})
+						if(res.data.code == '200') {
+							this.$message({
+								message: res.data.data.message,
+								type: 'success'
+							});
+						} else if(res.data.code == "601") {
+							this.$router.push('/login')
+						} else {
+							this.$message({
+								message: res.data.error,
+								type: 'error'
+							});
+						}
+					}, (err) => {
+						console.log(err)
+					})
 			},
 			//            上传图片
 			uploadImg: function(e, index) {
@@ -181,22 +182,21 @@
 				}
 				this.$ajax.post('api/uploadBanner', formData, config).then((res) => {
 					if(res.data.code == '200') {
-						if(this.status=="4"){
+						if(this.status == "4") {
 							this.bannerList[index].image = res.data.data.image
-						}else{
-							if(index==5){
-								this.nine.image=res.data.data.image
-							}else if(index==6){
-								this.big.image=res.data.data.image
-							}else{
-								this.ju.image=res.data.data.image
+						} else {
+							if(index == 5) {
+								this.nine.image = res.data.data.image
+							} else if(index == 6) {
+								this.big.image = res.data.data.image
+							} else {
+								this.ju.image = res.data.data.image
 							}
 						}
-						
-                        
-					}else if(res.data.code=="601"){
-				        this.$router.push('/login')
-					}else{
+
+					} else if(res.data.code == "601") {
+						this.$router.push('/login')
+					} else {
 						this.$message({
 							message: res.data.error,
 							type: 'error'
@@ -208,37 +208,37 @@
 				this.bannerList.push({
 					image: '',
 					click_url: '',
-					type:4
+					type: 4
 				})
 			},
 			del1(index) {
-				if(this.bannerList[index].id){
-					this.$ajax.post('/api/delIndexBanner',{
-						id:this.bannerList[index].id
+				if(this.bannerList[index].id) {
+					this.$ajax.post('/api/delIndexBanner', {
+						id: this.bannerList[index].id
 					}).then((res) => {
-					if(res.data.code == '200') {
-						this.$message({
-							message: res.data.data.message
-						});
-						this.getBannerList()
-					}else if(res.data.code=="601"){
-				        this.$router.push('/login')
-					}else{
-						this.$message({
-							message: res.data.error,
-							type: 'error'
-						});
-					}
-				}, (err) => {
-					console.log(err)
-				})
-				}else{
+						if(res.data.code == '200') {
+							this.$message({
+								message: res.data.data.message
+							});
+							this.getBannerList()
+						} else if(res.data.code == "601") {
+							this.$router.push('/login')
+						} else {
+							this.$message({
+								message: res.data.error,
+								type: 'error'
+							});
+						}
+					}, (err) => {
+						console.log(err)
+					})
+				} else {
 					this.bannerList.splice(index, 1)
 				}
-				
+
 			},
 			handleClick(tab) {
-			     this.getBannerList()
+				this.getBannerList()
 			}
 		},
 		mounted() {
@@ -250,7 +250,6 @@
 	}
 </script>
 <style scoped>
-	
 	.title small {
 		color: #a6afbb;
 		font-size: 14px;
@@ -264,7 +263,8 @@
 		padding: 0 20px;
 	}
 	
-	.upload_img,.upload_img2 {
+	.upload_img,
+	.upload_img2 {
 		width: 250px;
 		height: 86px;
 		background: #f2f7f8;
@@ -274,15 +274,15 @@
 		display: inline-block;
 		margin: 0px 10px 20px 88px;
 	}
-	.upload_img2{
+	
+	.upload_img2 {
 		height: 60px;
-		
 	}
 	
 	.upload_btn {
 		height: 28px;
-       line-height: 28px;
-       font-size: 14px;
+		line-height: 28px;
+		font-size: 14px;
 		position: absolute;
 		display: inline-block;
 		color: #0f8edd;
@@ -296,34 +296,39 @@
 		background-color: #fff;
 		border-radius: 50%;
 	}
-	
 	/*按钮样式*/
-.el-button{
-	height: 28px!important;
-    line-height: 28px!important;
-    padding: 0 10px!important;
-    border-radius: 6px!important;
-    font-size: 14px!important;
-}
-.el-input__inner{
-	height: 28px!important;
-    line-height: 28px!important;
-}
-.el-form-item {
-    margin-bottom: 12px!important;
-    display: inline-block;
-}
-.el-form-item__content{
-	margin-right: 20px;
-}
-.el-button+.el-button {
-    margin-left:0px!important;
-}
-.el-tabs__active-bar {
+	
+	.el-button {
+		height: 28px!important;
+		line-height: 28px!important;
+		padding: 0 10px!important;
+		border-radius: 6px!important;
+		font-size: 14px!important;
+	}
+	
+	.el-input__inner {
+		height: 28px!important;
+		line-height: 28px!important;
+	}
+	
+	.el-form-item {
+		margin-bottom: 12px!important;
+		display: inline-block;
+	}
+	
+	.el-form-item__content {
+		margin-right: 20px;
+	}
+	
+	.el-button+.el-button {
+		margin-left: 0px!important;
+	}
+	
+	.el-tabs__active-bar {
 		background-color: #0f8edd!important;
 	}
 	
-.el-tabs__item {
+	.el-tabs__item {
 		color: #54667a!important;
 		font-size: 20px!important;
 		height: 60px!important;
@@ -331,7 +336,7 @@
 		padding: 0 20px!important;
 	}
 	
-.el-tabs__item.is-active {
+	.el-tabs__item.is-active {
 		color: #54667a!important;
 	}
 </style>
