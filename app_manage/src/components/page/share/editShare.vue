@@ -76,16 +76,19 @@
 			</el-tabs>
 		</div>
 		<!--新增商品弹出框-->
-		<el-dialog title="优选商品库" :visible.sync="dialogVisible" class="special-dialog">
-				<p style="display: inline-block;">(请从库中挑满8件商品，{{selectPro.length}}/8)</p>
+		<el-dialog title="优选商品库" :visible.sync="dialogVisible" class="special-dialog editShare-dialog">
+				<p style="display: inline-block;position: absolute;top: 23px;left: 130px;">(请从库中挑满8件商品，{{selectPro.length}}/8)</p>
 			<div>
-				<el-table ref="table" :data="proList" tooltip-effect="dark" style="width: 100%;text-align: center;" border>
-					<el-table-column label="店铺" height="95" width="80">
+				<el-table ref="table" :data="proList" tooltip-effect="dark" style="width: 100%;text-align: center;" border height="550">
+					<el-table-column label="店铺" height="95" width="110">
 						<template slot-scope="scope">
-							<img :src="scope.row.pict_url" alt="" style="width:50px;height:50px;margin-top: 5px;">
+							<img :src="scope.row.pict_url" alt="" style="width:80px;height:80px;margin-top: 5px;">
 						</template>
 					</el-table-column>
-					<el-table-column label="商品名称" prop="title" show-overflow-tooltip>
+					<el-table-column label="商品名称">
+						<template slot-scope="scope">
+							{{scope.row.title}}
+						</template>
 					</el-table-column>
 					<el-table-column label="价格" width="100">
 						<template slot-scope="scope">￥{{scope.row.zk_final_price}}</template>
@@ -107,13 +110,13 @@
 						</template>
 					</el-table-column>
 				</el-table>
-				<div style="padding: 12px 20px;border: 1px solid rgb(223, 236, 235);margin-bottom: 30px;border-top: 0;border-top: 0;overflow: hidden;">
+				
+			</div>
+			<span slot="footer" class="dialog-footer">
+   <div style="overflow: hidden;">
 					<el-pagination @current-change="handleCurrentChange2" :page-size=limit2 layout="prev, pager, next, jumper" :page-count="totalPage2" style="display: inline-block;float: right;">
 					</el-pagination>
 				</div>
-			</div>
-			<span slot="footer" class="dialog-footer">
-   
   </span>
 		</el-dialog>
 		<!--查看话题详情弹出框-->
@@ -579,6 +582,12 @@
 	
 	.editShare .el-form-item__label {
 		line-height: 22px;
+	}
+	.editShare-dialog .el-dialog--small{
+		min-width: 1040px;
+	}
+	.editShare-dialog .el-dialog__body{
+		max-height: 550px;
 	}
 	/*.el-form-item {
 		margin-bottom: 12px!important;

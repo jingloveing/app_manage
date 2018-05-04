@@ -21,6 +21,12 @@ export default new Router({
                  {
                     path: '/withdraw',
                     component: resolve => require(['../components/page/withdraw/withdraw.vue'], resolve)
+                },{
+                    path: '/shareImage',
+                    component: resolve => require(['../components/page/shareImage/shareImage.vue'], resolve)
+                },{
+                    path: '/versionInfo',
+                    component: resolve => require(['../components/page/versionInfo/versionInfo.vue'], resolve)
                 },
                  {
                     path: '/indexBanner',

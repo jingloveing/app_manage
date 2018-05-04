@@ -17,10 +17,10 @@
             <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="0px" class="demo-ruleForm">
                 <!--<input type="text" placeholder="账号" v-model="ruleForm.username" class="input" name="username">-->
                 <!--<input type="password" placeholder="密码" v-model="ruleForm.password" @keyup.enter.native="submitForm('ruleForm')" class="input" name="password">-->
-                <el-form-item prop="username">
+                <el-form-item prop="username" style="display: block;">
                     <el-input v-model="ruleForm.username" placeholder="账号"></el-input>
                 </el-form-item>
-                <el-form-item prop="password">
+                <el-form-item prop="password" style="display: block;">
                     <el-input type="password" placeholder="密码" v-model="ruleForm.password" @keyup.enter.native="submitForm('ruleForm')"></el-input>
                 </el-form-item>
                     <input type="checkbox" style="vertical-align: middle;" id="rememberMe"><span style="color: #666;font-size: 12px;">记住密码</span>

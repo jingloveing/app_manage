@@ -31,9 +31,9 @@
 				<el-table ref="multipleTable" :data="goodsList" tooltip-effect="dark" style="width: 100%;text-align: center;" border @selection-change="handleSelectionChange">
 					<el-table-column type="selection" width="50" height="95">
 					</el-table-column>
-					<el-table-column label="品牌店铺" height="95" width="80">
+					<el-table-column label="品牌店铺" height="95" width="100">
 						<template slot-scope="scope">
-							<img :src="scope.row.logo" alt="" style="width:50px;height:50px;margin-top: 5px;">
+							{{scope.$index + 1}}.&nbsp;&nbsp;&nbsp;<img :src="scope.row.logo" alt="" style="width:50px;height:50px;margin-top: 5px;">
 							<p v-show="scope.row.is_index==1" style="font-size: 12px;color: #fc4b6c;text-align: center;">精选品牌</p>
 						</template>
 					</el-table-column>
@@ -42,8 +42,14 @@
 					<el-table-column label="商品数" width="100" prop="product_count"></el-table-column>
 					<el-table-column label="收藏人数" width="100" prop="collect_count">
 					</el-table-column>
-
-					<el-table-column prop="coupon_number" label="操作" width="380">
+                    <el-table-column label="排序" width="180">
+                    	<template slot-scope="scope">
+                    		<input type="number" class="indexMer-input" v-model="scope.row.sorts"/>
+                    		<el-button @click="sort(scope.row.id,scope.row.sorts)" type="text" size="small" class="pros">确定
+							</el-button>
+                    	</template>
+					</el-table-column>
+					<el-table-column prop="coupon_number" label="操作" width="300">
 						<template slot-scope="scope">
 							<el-button type="text" size="small" class="pros" v-text="scope.row.is_index==0?'设为精选':'取消精选'" @click="setIndex(scope.row.id,scope.row.is_index)"></el-button>
 							<el-button @click="edit(scope.row)" type="text" size="small" class="pros">编辑</el-button>
@@ -475,6 +481,30 @@
 				},(err)=>{
 					console.log(err)
 				})
+			},
+			//单个排序
+			sort(id,sorts){
+				this.$ajax.post("/api/setMerchantSortBack",{
+					id:id,
+					sorts:sorts
+				}).then((res)=>{
+					if(res.data.code == '200') {
+						this.$message({
+							message: res.data.data.message,
+							type: 'success'
+						});
+						this.getGoodsList()
+					} else if(res.data.code == "601") {
+						this.$router.push('/login')
+					} else {
+						this.$message({
+							message: res.data.error,
+							type: 'error'
+						});
+					}
+				},(err)=>{
+					console.log(err)
+				})
 			}
 		},
 		mounted() {
@@ -540,6 +570,16 @@
 		position: absolute;
 		top: 0;
 		left: 260px;
+	}
+	.indexMer-input{
+		height: 28px;
+    line-height: 28px;
+    border-radius: 4px;
+    outline: none;
+    border: 1px solid rgb(191, 217, 216);
+    width: 80px;
+    padding: 0 0 0 10px;
+    box-sizing: border-box;
 	}
 </style>
 <style>

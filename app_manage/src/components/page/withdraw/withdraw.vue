@@ -318,32 +318,3 @@
 		line-height: 24px;
 	}
 </style>
-<style>
-	/*按钮样式*/
-	
-	.el-button {
-		height: 28px!important;
-		line-height: 28px!important;
-		padding: 0 10px!important;
-		border-radius: 6px!important;
-		font-size: 14px!important;
-	}
-	
-	.el-input__inner {
-		height: 28px!important;
-		line-height: 28px!important;
-	}
-	
-	.el-form-item {
-		margin-bottom: 12px!important;
-		display: inline-block;
-	}
-	
-	.el-form-item__content {
-		margin-right: 20px;
-	}
-	
-	.el-button+.el-button {
-		margin-left: 0px!important;
-	}
-</style>

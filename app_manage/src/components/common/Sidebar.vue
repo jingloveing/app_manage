@@ -52,6 +52,14 @@
                           title: '挂单审核'
                       },
                       {
+                          index: 'shareImage',
+                          title: '分享夺宝宣传图'
+                      },
+                       {
+                          index: 'versionInfo',
+                          title: '版本通知'
+                      },
+                      {
                       	index: '7',
                           title: '数据中心',
                           subs: [
@@ -79,9 +87,6 @@
                               },{
                                   index: 'indexNews',
                                   title: '享利快报'
-                              },{
-                                  index: 'indexMerchant',
-                                  title: '品牌管理及精选'
                               },
 
                           ]
@@ -117,16 +122,20 @@
                       },
                      {
                           index: '5',
-                          title: '品牌现场控制区',
+                          title: '品牌管理控制区',
                           subs: [
                               {
                                   index: 'brandBanner',
-                                  title: '海报图 '
+                                  title: '品牌现场海报图 '
                               },
                               {
                                   index: 'brandView',
                                   title: '视频管理'
-                              }
+                              },
+                              {
+                                  index: 'indexMerchant',
+                                  title: '品牌管理及精选'
+                              },
                           ]
                       },
                       {

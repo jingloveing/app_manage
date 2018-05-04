@@ -13,7 +13,7 @@
         <div class="ms-doc">
               <p class="title">指标数据</p>
             <div class="ms-doc_main">
-                <p class="time">更新时间：2043-12-11</p>
+                <p class="time">更新时间：{{update_time}}</p>
                 <div style="font-size: 0;margin-bottom: 30px;">
                     <router-link class="list" to="/userData">
                         <div style="display: flex;align-items: center;margin-bottom: 22px;">
@@ -97,7 +97,8 @@
                 acer_count:{},
                 vistor_count:{},
                 visit_count:{},
-                order_count:{}
+                order_count:{},
+                update_time:''
             }
         },
         mounted(){
@@ -114,6 +115,7 @@
             			this.vistor_count=res.data.data.vistor_count
             			this.visit_count=res.data.data.visit_count
             			this.order_count=res.data.data.order_count
+            			this.update_time=res.data.data.update_time
             		}else if(res.data.code=='601'){
             			this.$router.push('/login')
             		}else{
