@@ -226,9 +226,7 @@
 				}else{
 					this.data.id=this.product_id
 				}
-				this.$ajax.post('/api/doDeliver',{
-					params:this.data
-				}).then((res)=>{
+				this.$ajax.post('/api/doDeliver',this.data).then((res)=>{
 					this.loading=false
 					if(res.data.code=="200"){
 						this.$message({

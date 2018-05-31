@@ -244,8 +244,8 @@
                     if (res.data.code == '200') {
                         this.date=res.data.data.date
                         this.count = res.data.data.count
-                        this.start =res.data.data.start
-                        this.end = res.data.data.end
+                        this.start =res.data.data.date_start
+                        this.end = res.data.data.date_end
                         var Broken1 = echarts.init(document.getElementById('broken1'));
                         Broken1.setOption({
                             backgroundColor: '#fff',
@@ -320,6 +320,7 @@
                 })
             },
             changeDate1(e){
+            	console.log(e)
                 this.start=e
                 this.getNewList()
             },

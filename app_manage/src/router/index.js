@@ -55,6 +55,9 @@ export default new Router({
                     path: '/bannerManage',
                     component: resolve => require(['../components/page/taobaoManage/bannerManage.vue'], resolve)
                 },{
+                    path: '/affirmOrder',
+                    component: resolve => require(['../components/page/taobaoManage/affirmOrder.vue'], resolve)
+                },{
                     path: '/brandBanner',
                     component: resolve => require(['../components/page/brandManage/brandBanner.vue'], resolve)
                 },{
@@ -80,6 +83,14 @@ export default new Router({
                 },{
                     path: '/selfVisit',
                     component: resolve => require(['../components/page/data_analysis/selfVisit.vue'], resolve)
+                },
+                {
+                    path: '/banner',
+                    component: resolve => require(['../components/page/smallRoutine/banner.vue'], resolve)
+                },
+                {
+                    path: '/rewardManage',
+                    component: resolve => require(['../components/page/smallRoutine/rewardManage.vue'], resolve)
                 },
                 
             ]

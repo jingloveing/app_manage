@@ -14,28 +14,6 @@
                 </template>
             </template>
         </el-menu>
-<!--@open="handleOpen" @close="handleClose" @select="handleSelect"-->
-        <!--<el-menu :default-active="onRoutes" class="el-menu-vertical-demo" unique-opened router>
-            <template v-for="item in items">
-                <template v-if="item._data&&item._data.length!==0">
-                    <el-submenu :index="item.url">
-                        <template slot="title">
-                            <img :src="item.icon_blue" alt="" style="width: 20px;height: 20px;vertical-align: middle;margin-right: 10px;">
-                            <img :src="item.icon" alt="" style="width: 20px;height: 20px;vertical-align: middle;margin-right: 10px;">
-                            {{ item.name }}</template>
-                        <el-menu-item v-for="(subItem,i) in item._data" :key="i" :index="subItem.url">{{ subItem.name }}
-                        </el-menu-item>
-                    </el-submenu>
-                </template>
-                <template v-else>
-                    <el-menu-item :index="item.url" v-on:click="selected = !selected">
-                        <img :src="item.icon_blue" alt="" style="width: 20px;height: 20px;vertical-align: middle;margin-right: 10px;">
-                        <img :src="item.icon" alt="" style="width: 20px;height: 20px;vertical-align: middle;margin-right: 10px;">
-                        {{ item.name }}
-                    </el-menu-item>
-                </template>
-            </template>
-        </el-menu>-->
     </div>
 </template>
 
@@ -108,7 +86,7 @@
                       },
                       {
                           index: '4',
-                          title: '淘宝控制区',
+                          title: '商城控制区',
                           subs: [
                               {
                                   index: 'goodsManage',
@@ -117,6 +95,10 @@
                               {
                                   index: 'bannerManage',
                                   title: '海报图'
+                              },
+                              {
+                                  index: 'affirmOrder',
+                                  title: '淘宝订单确认'
                               }
                           ]
                       },
@@ -149,6 +131,20 @@
                               {
                                   index: 'deliverManage',
                                   title: '发货管理'
+                              }
+                          ]
+                      },
+                      {
+                          index: '8',
+                          title: '小程序控制区',
+                          subs: [
+                              {
+                                  index: 'banner',
+                                  title: '轮播图'
+                              },
+                              {
+                                  index: 'rewardManage',
+                                  title: '打赏管理'
                               }
                           ]
                       },
